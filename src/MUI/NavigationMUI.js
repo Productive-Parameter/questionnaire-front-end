@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Tabs, Tab } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 const useStyle = makeStyles({
@@ -17,9 +17,17 @@ export default function NavigationMUI() {
 
     const classes = useStyle();
 
+    const handleChange = () => {
+
+    }
+
     return (
         <Box className={ classes.container }>
-            <Typography className={ classes.text }>Hello world!</Typography>
+            <Tabs onChange={handleChange}>
+                <Tab label="Etusivu" />
+                <Tab label="Kyselyt" />
+                <Tab label="Raportit" />
+            </Tabs>
         </Box>
     );
 }
