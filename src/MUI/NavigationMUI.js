@@ -1,6 +1,7 @@
-import React from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
+import React from "react";
+import { Grid } from "@mui/material";
 import { makeStyles } from '@mui/styles';
+import TabsMUI from "./TabsMUI";
 
 const useStyle = makeStyles({
     container: {
@@ -17,17 +18,15 @@ export default function NavigationMUI() {
 
     const classes = useStyle();
 
-    const handleChange = () => {
-
-    }
-
     return (
-        <Box className={ classes.container }>
-            <Tabs onChange={handleChange}>
-                <Tab label="Etusivu" />
-                <Tab label="Kyselyt" />
-                <Tab label="Raportit" />
-            </Tabs>
-        </Box>
+        <Grid container spacing={12} className={ classes.nav } >
+            <Grid item xs={2} >
+            </Grid>
+            <Grid item xs={7} > 
+                <TabsMUI />
+            </Grid>
+            <Grid item xs={3} >
+            </Grid>
+        </Grid>
     );
 }
