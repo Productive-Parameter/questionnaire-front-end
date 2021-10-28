@@ -1,6 +1,7 @@
 import React from "react";
 import NavigationMUI from './MUI/NavigationMUI';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Questionnaires from "./MUI/Questionnaires";
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
       <Switch>
         <Route exact path='/'></Route>
         <Route exact path='/etusivu'></Route>
-        <Route exact path='/kyselyt'></Route>
+        <Route exact path='/kyselyt'><Questionnaires/></Route>
         <Route exact path='/raportit'></Route>
       </Switch>
     </BrowserRouter>
