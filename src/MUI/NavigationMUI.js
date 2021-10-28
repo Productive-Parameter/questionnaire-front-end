@@ -6,12 +6,11 @@ import TabsMUI from "./TabsMUI";
 const useStyle = makeStyles({
     container: {
         display: 'flex',
+        position: 'fixed',
+        width: '110vw',
+        height: '150px',
         justifyContent: 'center',
-        backgroundColor: '#000000',
     },
-    text: {
-        color: '#FFFFFF',
-    }
 })
 
 export default function NavigationMUI() {
@@ -19,13 +18,13 @@ export default function NavigationMUI() {
     const classes = useStyle();
 
     return (
-        <Grid container spacing={12} className={ classes.nav } >
-            <Grid item xs={2} >
+        <Grid container spacing={12} className={ classes.container } >
+            <Grid item xs={1} >
             </Grid>
-            <Grid item xs={7} > 
+            <Grid item xs={10} > 
                 <TabsMUI />
             </Grid>
-            <Grid item xs={3} >
+            <Grid item xs={1} >
             </Grid>
         </Grid>
     );

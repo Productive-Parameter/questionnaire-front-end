@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     tab: {
-        color: '#d3d3d3',
+        color: '#FFFFFF',
         '&:active': {
             color: '#FFFFFF',
         },
@@ -17,7 +17,7 @@ export default function TabsMUI() {
     const classes = useStyles();
 
     return (
-        <Tabs >
+        <Tabs>
             <Tab className={ classes.tab } label='Etusivu' component={ Link } to='/' />
             <Tab className={ classes.tab } label='Kyselyt' component={ Link } to='/'/>
             <Tab className={ classes.tab } label='Raportointi' component={ Link } to='/'/>
