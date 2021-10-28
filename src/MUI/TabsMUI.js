@@ -19,8 +19,8 @@ export default function TabsMUI() {
     return (
         <Tabs >
             <Tab className={ classes.tab } label='Etusivu' component={ Link } to='/' />
-            <Tab className={ classes.tab } label='Kyselyt' component={ Link } to='/'/>
-            <Tab className={ classes.tab } label='Raportointi' component={ Link } to='/'/>
+            <Tab className={ classes.tab } label='Kyselyt' component={ Link } to='/kyselyt'/>
+            <Tab className={ classes.tab } label='Raportointi' component={ Link } to='/raportointi'/>
         </Tabs>
     );
 }
