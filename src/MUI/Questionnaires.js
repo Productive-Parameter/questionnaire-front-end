@@ -38,7 +38,7 @@ export default function Questionnaires() {
     }
     // asetuksia
     const gridOptions ={
-        sortable: true, filter: true,  animateRows: true, resizable: true, wrapText: true, autoHeight: true, 
+        sortable: true, filter: true,  animateRows: true, resizable: true, wrapText: true, autoHeight: true, cellStyle: {'border-color': 'black', 'border': '2'}
         }
     // on grid load lataa aggrid api, jossa jotain ominaisuuksia 
     const onGridReady = (params) => {
@@ -63,7 +63,7 @@ export default function Questionnaires() {
                 defaultColDef={gridOptions}
                 rowData={questionnaires}
                 onGridReady={onGridReady}
-                // onFirstDataRendered = {onFirstDataRendered}
+                onFirstDataRendered = {onFirstDataRendered}
             
                 >
                 
