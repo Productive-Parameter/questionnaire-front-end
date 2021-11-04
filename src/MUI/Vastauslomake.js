@@ -37,10 +37,10 @@ export default function Vastauslomake(props) {
                 {kysymykset.map(kysymys => {  
                 return(
                     <TextField
-                    sx={{color:'black'}}
                     label={kysymys.teksti}
                     margin= 'dense'
                     fullWidth
+                    inputProps = {{style:{color:'black'}}}
                 />
                 ) 
             })}
