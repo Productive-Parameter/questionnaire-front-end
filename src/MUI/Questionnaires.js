@@ -1,73 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-
+import SendIcon from '@mui/icons-material/Send';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import { Button} from "@mui/material";
+import Vastauslomake from './Vastauslomake';
 
 
 export default function Questionnaires() {
     const [questionnaires, setQuestionnaires] = useState([]);
-    const [gridApi, setGridApi] = React.useState(null);
 
-    
     useEffect(() => fetchData(), []);
-    
+    const url = 'http://localhost:8080/api/kyselies'    
 
+    // haetaan kaikki kyselyt
     const fetchData = () => {
-        fetch('https://kyselypalvelu.herokuapp.com/api/kyselies') // testidata
+        fetch(url) // testidata
         .then(response => response.json())
         .then(data => {
             
-            console.log("KYSELYN NIMI " + data._embedded.kyselies[0].nimi)    
-            console.log("KYSYMYS 0:N TEKSTI " + data._embedded.kyselies[0].kysymys[0].teksti)
-            setQuestionnaires(data._embedded.kyselies)}
+            console.log("KYSELYN 0 NIMI " + data._embedded.kyselies[0].nimi)    
+            console.log("KYSYMYS 0 TEKSTI " + data._embedded.kyselies[0].kysymys[0].teksti)
+            setQuestionnaires(data._embedded.kyselies)
+            console.log(questionnaires)
+        }
             ) // vaihdetaan jotain tilalle oikeat jutut    
 
     }
-    
-    // valuegetter, palauttaa kolumnien kysymykset 
-    function kysymysGetter(params){
-        const kysymykset =[params.data.kysymys]
-        let loopdata =''
-        let i = 0;
-        while   ( i < kysymykset[0].length){
-            loopdata +="Kysymys "+ (i+1)+  ": "+  kysymykset[0][i].teksti + " |||||| "
-            i++
-        }
-        return loopdata
-    }
-    // asetuksia
-    const gridOptions ={
-        sortable: true, filter: true,  animateRows: true, resizable: true, wrapText: true, autoHeight: true, cellStyle: {'border-color': 'black', 'border': '2'}
-        }
-    // on grid load lataa aggrid api, jossa jotain ominaisuuksia 
-    const onGridReady = (params) => {
-            setGridApi(params.api);
-          };
-    //skaalaa gridin ladatessa, pois käytöstä atm
-    const onFirstDataRendered = () => {
-            gridApi.sizeColumnsToFit();
-          };
 
-    // fieldit on testidataa, muutetaan myöhemmin oikeaksi
-    const columns = [
-        {headerName: 'Nimi',headerClass:'header', field: 'nimi', width: 250},
-        {headerName: 'Kysymykset',headerClass:'header',  valueGetter:kysymysGetter, width: 1000}
-    ]
+    // tyylittelyä Gridille
+    const Item = styled(Paper)(({ theme }) => ({
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+      }));
    
-
     return (
-        <div className="ag-theme-material" style={{height: 600, margin: 'auto'}}>
-            <AgGridReact
-                columnDefs={columns}
-                defaultColDef={gridOptions}
-                rowData={questionnaires}
-                onGridReady={onGridReady}
-                onFirstDataRendered = {onFirstDataRendered}
+        <div>
             
-                >
-                
-            </AgGridReact>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+             {questionnaires.map(name => {
+                return (
+                    <Grid item xs={3}>
+
+                    {/* item tekstikenttään tulee kyselyn nimi  */}
+                    <Item>{name.nimi}   
+                    
+                    {/* vastauslomakekomponentille lähetetään parametreiksi/propseiksi kunkin kyselyn kysymyksen api  */}
+                    <Vastauslomake params={(name._links.kysymykset)} nimi={name.nimi} />
+                    
+                    </Item>
+                    </Grid>
+                )    
+             })}
+            </Grid>
         </div>
     );
 }

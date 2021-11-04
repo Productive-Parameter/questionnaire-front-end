@@ -2,11 +2,14 @@
   "name": "questionnaire",
   "version": "0.1.0",
   "private": true,
-  "engines": { "node": "14.17.5",
-    "npm": "8.1.0"}, 
+  "engines": {
+    "node": "14.17.5",
+    "npm": "8.1.0"
+  },
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.6",
     "@mui/styles": "^5.0.2",
     "@testing-library/jest-dom": "^5.14.1",
@@ -25,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "stop": "taskkill -F -IM node.exe"
   },
   "eslintConfig": {
     "extends": [
@@ -44,7 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-
   }
-  
 }
