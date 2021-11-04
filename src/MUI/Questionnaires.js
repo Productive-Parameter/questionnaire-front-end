@@ -13,7 +13,8 @@ export default function Questionnaires() {
     const [questionnaires, setQuestionnaires] = useState([]);
 
     useEffect(() => fetchData(), []);
-    const url = 'http://localhost:8080/api/kyselies'    
+    const url = 'https://kyselypalvelu.herokuapp.com/api/kyselies'    
+    // https://kyselypalvelu.herokuapp.com/api/kyselies
 
     // haetaan kaikki kyselyt
     const fetchData = () => {
@@ -46,10 +47,10 @@ export default function Questionnaires() {
                 return (
                     <Grid item xs={3}>
 
-                    {/* item tekstikenttään tulee kyselyn nimi  */}
+                    {/* item tekstikenttään kyselyn nimi  */}
                     <Item>{name.nimi}   
                     
-                    {/* vastauslomakekomponentille lähetetään parametreiksi/propseiksi kunkin kyselyn kysymyksen api  */}
+                    {/* vastauslomakekomponentille lähetetään propseiksi kunkin kyselyn kysymyksen api  */}
                     <Vastauslomake params={(name._links.kysymykset)} nimi={name.nimi} />
                     
                     </Item>
