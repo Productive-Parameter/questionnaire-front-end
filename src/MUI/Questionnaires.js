@@ -5,6 +5,7 @@ import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
+
 //import { Button} from "@mui/material";
 import Vastauslomake from './Vastauslomake';
 
@@ -15,7 +16,6 @@ export default function Questionnaires() {
 
     useEffect(() => fetchData(), []);
     const url = 'https://kyselypalvelu.herokuapp.com/api/kyselyt'    
-    // https://kyselypalvelu.herokuapp.com/api/kyselies
 
     // haetaan kaikki kyselyt
     const fetchData = () => {
@@ -24,11 +24,11 @@ export default function Questionnaires() {
         .then(data => {
             
             console.log("KYSELYN 0 NIMI " + data[0].nimi)    
-//            console.log("KYSYMYS 0 TEKSTI " + data._embedded.kyselies[0].kysymys[0].teksti)
             setQuestionnaires(data)
             console.log(questionnaires)
         }
-            ) // vaihdetaan jotain tilalle oikeat jutut    
+            )
+        .catch(err=>console.log(err));  
 
     }
 
@@ -52,7 +52,7 @@ export default function Questionnaires() {
                     <Item>{kysely.nimi}   
                     
                     {/* vastauslomakekomponentille lähetetään propseiksi kunkin kyselyn kysymyksen api  */}
-                    <Vastauslomake params={(kysely.kysymykset)} nimi={kysely.nimi} id={kysely.id} />
+                    <Vastauslomake kysely={kysely} />
                     
                     </Item>
                     </Grid>
