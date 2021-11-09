@@ -8,13 +8,13 @@ import { styled } from '@mui/material/styles';
 //import { Button} from "@mui/material";
 import Vastauslomake from './Vastauslomake';
 
-// christianin testipush omaan branchiin
+
 
 export default function Questionnaires() {
     const [questionnaires, setQuestionnaires] = useState([]);
 
     useEffect(() => fetchData(), []);
-    const url = 'https://kyselypalvelu.herokuapp.com/api/kyselies'    
+    const url = 'https://kyselypalvelu.herokuapp.com/api/kyselyt'    
     // https://kyselypalvelu.herokuapp.com/api/kyselies
 
     // haetaan kaikki kyselyt
@@ -23,9 +23,9 @@ export default function Questionnaires() {
         .then(response => response.json())
         .then(data => {
             
-            console.log("KYSELYN 0 NIMI " + data._embedded.kyselies[0].nimi)    
-            console.log("KYSYMYS 0 TEKSTI " + data._embedded.kyselies[0].kysymys[0].teksti)
-            setQuestionnaires(data._embedded.kyselies)
+            console.log("KYSELYN 0 NIMI " + data[0].nimi)    
+//            console.log("KYSYMYS 0 TEKSTI " + data._embedded.kyselies[0].kysymys[0].teksti)
+            setQuestionnaires(data)
             console.log(questionnaires)
         }
             ) // vaihdetaan jotain tilalle oikeat jutut    
@@ -44,15 +44,15 @@ export default function Questionnaires() {
         <div>
             
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-             {questionnaires.map(name => {
+             {questionnaires.map(kysely => {
                 return (
                     <Grid item xs={3}>
 
                     {/* item tekstikenttään kyselyn nimi  */}
-                    <Item>{name.nimi}   
+                    <Item>{kysely.nimi}   
                     
                     {/* vastauslomakekomponentille lähetetään propseiksi kunkin kyselyn kysymyksen api  */}
-                    <Vastauslomake params={(name._links.kysymykset)} nimi={name.nimi} />
+                    <Vastauslomake params={(kysely.kysymykset)} nimi={kysely.nimi} id={kysely.id} />
                     
                     </Item>
                     </Grid>
