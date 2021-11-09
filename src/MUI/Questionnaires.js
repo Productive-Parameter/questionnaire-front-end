@@ -10,17 +10,18 @@ export default function Questionnaires() {
     useEffect(() => fetchData(), []);
 
     const fetchData = () => {
-        fetch('https://api.rss2json.com/v1/api.json?rss_url=https:%2F%2Ffeeds.publicradio.org%2Fpublic_feeds%2Fsong-of-the-day%2Frss%2Frss') // testidata
+        fetch('https://kyselypalvelu.herokuapp.com/api/kyselies/1') // testidata
         .then(response => response.json())
-        .then(data => setQuestionnaires(data.items)) // vaihdetaan jotain tilalle oikeat jutut
+        .then(data => setQuestionnaires(data.nimi))
+        .then(data => console.log(data))
     }
 
     // fieldit on testidataa, muutetaan myöhemmin oikeaksi
     const columns = [
-        {headerName: "Nimi", field: "title"},
-        {headerName: "Kysymys 1", field: "author"},
-        {headerName: "Kysymys 2", field: "description"},
-        {headerName: "Kysymys 3", field: "enclosure.type"}
+        {headerName: "Nimi", field: "kyselies.nimi"},
+        // {headerName: "Kysymys 1", field: ""},
+        // {headerName: "Kysymys 2", field: "description"},
+        // {headerName: "Kysymys 3", field: "enclosure.type"}
     ]
 
     return (
