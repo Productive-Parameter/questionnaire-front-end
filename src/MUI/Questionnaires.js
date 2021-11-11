@@ -40,7 +40,7 @@ export default function Questionnaires() {
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
              {questionnaires.map((kysely,i) => {
                 return (
-                    <Grid item xs={3}key={i}>
+                    <Grid item xs={3}  key={i}>
 
                     {/* item tekstikenttään kyselyn nimi  */}
                     <Item>{kysely.nimi}   

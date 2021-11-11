@@ -56,7 +56,7 @@ export default function Vastauslomake(props) {
     
     return (
         <Box>
-            <Button endIcon={<FormatAlignJustifyIcon />}  onClick={()=>haeEsimerkkikysymys()} color='success'>Näytä kysymykset</Button>
+            <Button endIcon={<FormatAlignJustifyIcon color="info" />}   onClick={()=>haeEsimerkkikysymys()} color="info">Näytä kysymykset</Button>
             <Button endIcon={<SendIcon />} color='success' onClick={()=>vastaaKysymyksiin()}>Vastaa</Button>
 
             <Dialog open={open} onClose={suljeKysely} maxWidth="lg" >
@@ -76,9 +76,10 @@ export default function Vastauslomake(props) {
                             console.log(`Jonkun kysymyksen tyyppiä ei voitu lukea `)
                             break;
                     }})}
-            
+            <Box sx={{ '& button': { m: 1 }, justifyContent: 'center' } }>
             <Button variant="contained" color="success" onClick={iterVastaukset} sx={{marginBottom: 0.4}} >Lähetä kysely</Button>
-            <Button variant="contained" color="success"  onClick={suljeKysely} sx={{marginBottom: 1.5}} >Sulje kysely</Button>
+            <Button variant="contained" color="info"  onClick={suljeKysely} sx={{marginBottom: 1.5}} >Sulje kysely</Button>
+            </Box >
             </FormControl>
             </Dialog>
         </Box> )}

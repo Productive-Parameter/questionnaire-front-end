@@ -13,6 +13,7 @@ const useStyles = makeStyles({
         '&:active': {
             color: '#FFFFFF',
         },
+        
     }
 });
 
@@ -28,7 +29,7 @@ const classes = useStyles();
         <Tabs value = {tab} onChange={tabChange}>
             <Tab className={ classes.tab } value='one' label='Etusivu' component={ Link } to='/' />
             <Tab className={ classes.tab } value='two' label='Kyselyt' component={ Link } to='/kyselyt'/>
-            <Tab className={ classes.tab }  value='three' label='Raportointi' component={ Link } to='/raportointi'/>
+            <Tab className={ classes.tab } value='three' label='Raportointi' component={ Link } to='/raportointi'/>
         </Tabs>
     );
 }
