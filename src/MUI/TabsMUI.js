@@ -3,6 +3,10 @@ import { Tabs, Tab } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from 'react-router-dom';
 
+
+
+export default function TabsMUI() {
+
 const useStyles = makeStyles({
     tab: {
         color: '#d3d3d3',
@@ -12,15 +16,19 @@ const useStyles = makeStyles({
     }
 });
 
-export default function TabsMUI() {
+const [tab, setTab] = React.useState('one');
 
-    const classes = useStyles();
+const tabChange = (event, value) =>{
+    setTab(value)
+}
+
+const classes = useStyles();
 
     return (
-        <Tabs >
-            <Tab className={ classes.tab } label='Etusivu' component={ Link } to='/' />
-            <Tab className={ classes.tab } label='Kyselyt' component={ Link } to='/kyselyt'/>
-            <Tab className={ classes.tab } label='Raportointi' component={ Link } to='/raportointi'/>
+        <Tabs value = {tab} onChange={tabChange}>
+            <Tab className={ classes.tab } value='one' label='Etusivu' component={ Link } to='/' />
+            <Tab className={ classes.tab } value='two' label='Kyselyt' component={ Link } to='/kyselyt'/>
+            <Tab className={ classes.tab }  value='three' label='Raportointi' component={ Link } to='/raportointi'/>
         </Tabs>
     );
 }

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-//import SendIcon from '@mui/icons-material/Send';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-
-//import { Button} from "@mui/material";
 import Vastauslomake from './Vastauslomake';
 
 
@@ -23,7 +20,6 @@ export default function Questionnaires() {
             
             console.log("KYSELYN 0 NIMI " + data[0].nimi)    
             setQuestionnaires(data)
-            console.log(questionnaires)
         }
             )
         .catch(err=>console.log(err));  
@@ -42,15 +38,15 @@ export default function Questionnaires() {
         <div>
             
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-             {questionnaires.map(kysely => {
+             {questionnaires.map((kysely,i) => {
                 return (
-                    <Grid item xs={3}>
+                    <Grid item xs={3}key={i}>
 
                     {/* item tekstikenttään kyselyn nimi  */}
                     <Item>{kysely.nimi}   
                     
                     {/* vastauslomakekomponentille lähetetään propseiksi kunkin kyselyn kysymyksen api  */}
-                    <Vastauslomake kysely={kysely} />
+                    <Vastauslomake kysely={kysely}  />
                     
                     </Item>
                     </Grid>
