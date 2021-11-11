@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 //import SendIcon from '@mui/icons-material/Send';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';

@@ -1,7 +1,5 @@
 import React from 'react';
 import SendIcon from '@mui/icons-material/Send';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import { Button, Dialog, TextField, DialogActions, DialogTitle } from "@mui/material";
 import Box from '@mui/material/Box';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
@@ -10,24 +8,39 @@ import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 export default function Vastauslomake(props) {
 
     const [kysymykset, setKysymykset] = React.useState([])
-    const [vastaus, setVastaukset] = React.useState([])
+    const [vastaukset, setVastaukset] = React.useState([])
     const [open, setOpen] = React.useState(false)
 
    const vastaa = (vastaus) => {
-    /*    console.log("POST")
-        fetch("lisää kysymyksen endpoint tähän", {method: 'POST', 
+        console.log("POST")
+        console.log(vastaus)
+        fetch("https://kyselypalvelu.herokuapp.com/api/vastaukset", {method: 'POST', 
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(vastaus)
         })
-        .catch(err=>console.log(err));
+        .catch(err=>console.log(err))
 
-        */ 
+    }
+
+    const iterVastaukset = () => {
+
+        const vastausTaulukko = Object.entries(vastaukset)
+
+        for (let i = 0; i < vastausTaulukko.length; i++) {
+
+            const vastaus = {kysymys: vastausTaulukko[i][0], vastaus: vastausTaulukko[i][1]} 
+
+            vastaa(vastaus)
+            console.log(vastaus)
+        }
+
         setOpen(false)
+        
     }
 
     const muutaVastaus = (e, kysymysid) => {
-     setVastaukset({...vastaus, [kysymysid]: e.target.value})
-     console.log(vastaus)
+     setVastaukset({...vastaukset, [kysymysid]: e.target.value})
+     console.log(vastaukset)
     }
     const suljeKysely = () =>{
         setOpen(false)
@@ -137,7 +150,7 @@ export default function Vastauslomake(props) {
                     }
             })}
             <DialogActions>
-            <Button>Lähetä kysely</Button>
+            <Button onClick={iterVastaukset}>Lähetä kysely</Button>
             <Button onClick={suljeKysely}>Sulje kysely</Button>
             </DialogActions>
             </Dialog>
