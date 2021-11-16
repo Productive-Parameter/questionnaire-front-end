@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import { Button, Dialog, DialogTitle, Box} from "@mui/material";
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
@@ -11,34 +11,41 @@ import RadioValinta from '../Returns/RadioValinta';
 
 export default function Vastauslomake(props) {
 
-    const [kysymykset, setKysymykset] = React.useState([])
-    const [vastaukset, setVastaukset] = React.useState([])
-    const [open, setOpen] = React.useState(false)
+    const [kysymykset, setKysymykset] = useState([])
+    const [vastaukset, setVastaukset] = useState([])
+    const [kysely, setKysely] = useState(props.kysely)
+    const [open, setOpen] = useState(false)
 
-   const vastaa = (vastaus) => {
+   const vastaa = (props) => {
         console.log("POST")
-        console.log(vastaus)
+        console.log(props)
 
         const postOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({kysymys: vastaus[0], vastaus: vastaus[1]})
+            headers: { 'Accept': 'application/json',
+                        'Content-Type': 'application/json' },
+            body: JSON.stringify(props)
         };
         fetch("https://kyselypalvelu.herokuapp.com/api/vastaukset", postOptions )
         .catch(err=>console.log(err))
     }
 
     const iterVastaukset = () => {
+        
+        console.log(kysely.vastaukset)
         console.log(vastaukset)
-        const vastausTaulukko = Object.entries(vastaukset)
-        vastausTaulukko.forEach(vastaus=>{vastaa(vastaus)})   
+        setKysely(
+            kysely.vastaukset = vastaukset
+        )
+        console.log(kysely);
+        vastaa(kysely) 
         setOpen(false)                 
     }
 
     const muutaVastaus = (e, kysymysid) => {
-     setVastaukset({...vastaukset, [kysymysid]: e.target.value})
-     console.log(vastaukset)
-    }
+        setVastaukset({...vastaukset, [kysymysid]: e.target.value})
+        console.log(vastaukset)
+       }
 
     const suljeKysely = () =>{
         setOpen(false)
