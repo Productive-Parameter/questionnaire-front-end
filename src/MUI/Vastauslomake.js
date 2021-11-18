@@ -16,48 +16,54 @@ export default function Vastauslomake(props) {
     const [kysely, setKysely] = useState(props.kysely)
     const [open, setOpen] = useState(false)
 
-   const vastaa = (props) => {
-        console.log("POST")
-        console.log(props)
 
+    // post pyyntö 
+   const vastaa = (kysely) => {
+        console.log("POST")
+        console.log(kysely)
+        
         const postOptions = {
             method: 'POST',
             headers: { 'Accept': 'application/json',
                         'Content-Type': 'application/json' },
-            body: JSON.stringify(props)
+            body: JSON.stringify(kysely)
         };
         fetch("https://kyselypalvelu.herokuapp.com/api/vastaukset", postOptions )
         .catch(err=>console.log(err))
+
+        // resetoidaan statet, muuten jää vanhoja vastauksia muistiin
+        setVastaukset([])
+        setKysely(kysely)
     }
 
-    const iterVastaukset = () => {
-        
-        console.log(kysely.vastaukset)
-        console.log(vastaukset)
-        setKysely(
-            kysely.vastaukset = vastaukset
-        )
-        console.log(kysely);
+    // muutetaan vastaukset objekti arrayksi ja asetetaan se kyselylle
+    const lisaaVastaukset = () => {
+        const vastausTaulukko = Object.entries(vastaukset).map(([id, vastaus]) => ({id,vastaus}));
+        setKysely(kysely.vastaukset =  vastausTaulukko)
         vastaa(kysely) 
         setOpen(false)                 
     }
 
+    // vastauksen muutokset (joka näppäiniskulla)
     const muutaVastaus = (e, kysymysid) => {
-        setVastaukset({...vastaukset, [kysymysid]: e.target.value})
         console.log(vastaukset)
-       }
+        setVastaukset({...vastaukset, [kysymysid]: e.target.value})
+    }
 
     const suljeKysely = () =>{
         setOpen(false)
     }
 
+    // turha atm
     const haeEsimerkkikysymys = () =>{
-        console.log(props.kysely)
+        console.log(kysely)
         alert('Ei vielä käytössä')        
     }
 
+    // näytetään kyselyn kysymykset
     const vastaaKysymyksiin = () =>{
-        setKysymykset(props.kysely.kysymykset)
+        console.log(kysely.kysymykset)
+        setKysymykset(kysely.kysymykset)
         setOpen(true)
     }
     
@@ -67,7 +73,7 @@ export default function Vastauslomake(props) {
             <Button endIcon={<SendIcon />} color='success' onClick={()=>vastaaKysymyksiin()}>Vastaa</Button>
 
             <Dialog open={open} onClose={suljeKysely} maxWidth="lg" >
-                <DialogTitle sx={{fontSize:'2rem', fontWeight: 'bold', color:'#0d0778'}}>{props.kysely.nimi}</DialogTitle>
+                <DialogTitle sx={{fontSize:'2rem', fontWeight: 'bold', color:'#0d0778'}}>{kysely.nimi}</DialogTitle>
                 <FormControl component="fieldset" sx={{marginLeft: 2, marginRight: 2}}>
                 {kysymykset.map((kysymys,i) => {
                     switch (kysymys.tyyppi){
@@ -84,7 +90,7 @@ export default function Vastauslomake(props) {
                             break;
                     }})}
             <Box sx={{ '& button': { m: 1 }, justifyContent: 'center' } }>
-            <Button variant="contained" color="success" onClick={iterVastaukset} sx={{marginBottom: 0.4}} >Lähetä kysely</Button>
+            <Button variant="contained" color="success" onClick={lisaaVastaukset} sx={{marginBottom: 0.4}} >Lähetä kysely</Button>
             <Button variant="contained" color="info"  onClick={suljeKysely} sx={{marginBottom: 1.5}} >Sulje kysely</Button>
             </Box >
             </FormControl>

@@ -6,12 +6,15 @@ import Checkbox from '@mui/material/Checkbox';
 
 
 export default function Check(props){
+
+    const kysymys = props.kysymys;
+
     return(
         <Box sx={{marginBottom: 2}}>
-        <FormLabel sx={{fontSize:'inherit',  color:'black'}}>{props.kysymys.teksti}</FormLabel>
+        <FormLabel sx={{fontSize:'inherit',  color:'black'}}>{kysymys.teksti}</FormLabel>
         <FormGroup row>                           
-            <FormControlLabel onChange={e => props.muutaVastaus(e, props.kysymys.id)}  control={<Checkbox defaultChecked />} label="Vaihtoehto 1 valmiiks valittu" />
-            <FormControlLabel  onChange={e => props.muutaVastaus(e, props.kysymys.id)} control={<Checkbox />} label="Vaihtoehto 2" />
+            <FormControlLabel onChange={e => props.muutaVastaus(e, kysymys.id)}  control={<Checkbox defaultChecked />} label="Vaihtoehto 1 valmiiks valittu" />
+            <FormControlLabel  onChange={e => props.muutaVastaus(e, kysymys.id)} control={<Checkbox />} label="Vaihtoehto 2" />
         </FormGroup>
         </Box>) 
 }

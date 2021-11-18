@@ -6,8 +6,8 @@ import Vastauslomake from './Vastauslomake';
 
 
 
-export default function Questionnaires() {
-    const [questionnaires, setQuestionnaires] = useState([]);
+export default function Kyselyt() {
+    const [kyselyt, setKyselyt] = useState([]);
 
     useEffect(() => fetchData(), []);
     const url = 'https://kyselypalvelu.herokuapp.com/api/kyselyt'    
@@ -17,9 +17,8 @@ export default function Questionnaires() {
         fetch(url) // testidata
         .then(response => response.json())
         .then(data => {
-            
             console.log("KYSELYN 0 NIMI " + data[0].nimi)    
-            setQuestionnaires(data)
+            setKyselyt(data)
         }
             )
         .catch(err=>console.log(err));  
@@ -38,7 +37,7 @@ export default function Questionnaires() {
         <div>
             
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-             {questionnaires.map((kysely,i) => {
+             {kyselyt.map((kysely,i) => {
                 return (
                     <Grid item xs={3}  key={i}>
 

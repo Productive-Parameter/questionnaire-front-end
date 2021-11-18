@@ -3,8 +3,7 @@ import NavigationMUI from './MUI/NavigationMUI';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from "@mui/material";
-import Questionnaires from './MUI/Questionnaires'
-
+import Kyselyt from "./MUI/Kyselyt";
 const theme = createTheme({
   palette: {
     primary: {main: '#000000', contrastText: '#FFFFFF'},
@@ -29,7 +28,7 @@ function App() {
         <Switch>
           <Route exact path='/'></Route>
           <Route exact path='/etusivu'></Route>
-          <Route exact path='/kyselyt'><Questionnaires /></Route>
+          <Route exact path='/kyselyt'><Kyselyt /></Route>
           <Route exact path='/raportit'></Route>
         </Switch>
       </ThemeProvider>

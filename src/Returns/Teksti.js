@@ -1,16 +1,19 @@
 import {TextField, Box } from "@mui/material";
 
 export default function Teksti(props){
+
+    const kysymys = props.kysymys;
+    
     return (
         <Box sx={{marginBottom: 2}}>
                 <TextField
-                required = {props.kysymys.pakollinen ===true}
+                required = {kysymys.pakollinen ===true}
                 multiline
-                label={props.kysymys.teksti}
+                label={kysymys.teksti}
                 margin= 'dense'
                 fullWidth
                 inputProps = {{style:{color:'black'}}}
-                onChange={e => props.muutaVastaus(e, props.kysymys.id)}
+                onChange={e => props.muutaVastaus(e, kysymys.id)}
                 InputLabelProps={{
                     // shrink: true
                 }}/>
