@@ -2,7 +2,7 @@ import {TextField, Box } from "@mui/material";
 
 export default function Teksti(props){
 
-    const kysymys = props.kysymys;
+    const kysymys = props;
     
     return (
         <Box sx={{marginBottom: 2}}>

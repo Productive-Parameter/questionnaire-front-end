@@ -6,7 +6,7 @@ import Radio from '@mui/material/Radio';
 
 export default function RadioValinta(props) {
 
-    const kysymys = props.kysymys;
+    const kysymys = props;
     
     return(
         <Box sx={{marginBottom: 2}}>
