@@ -89,7 +89,7 @@ export default function Vastauslomake(props) {
                             return(<RadioValinta  key={i} kysymys={kysymys} muutaVastaus={muutaVastaus}/>)
                         default:
                             console.log(`Jonkun kysymyksen tyyppiä ei voitu lukea `)
-                            break;
+                            return(<div></div>);
                     }})}
             <Box sx={{ '& button': { m: 1 }, justifyContent: 'center' } }>
             <Button variant="contained" color="success" onClick={lisaaVastaukset} sx={{marginBottom: 0.4}} >Lähetä kysely</Button>
