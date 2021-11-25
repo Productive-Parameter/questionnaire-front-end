@@ -3,11 +3,12 @@ import SendIcon from '@mui/icons-material/Send';
 import { Button, Dialog, DialogTitle, Box} from "@mui/material";
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import FormControl from '@mui/material/FormControl';
-
+import { Link } from 'react-router-dom';
 import Teksti from '../Returns/Teksti';
 import Skaala from '../Returns/Skaala';
 import Check from '../Returns/Check';
 import RadioValinta from '../Returns/RadioValinta';
+import Vastauksetdialogi from '../Returns/Vastauksetdialogi';
 
 export default function Vastauslomake(props) {
 
@@ -15,7 +16,7 @@ export default function Vastauslomake(props) {
     const [vastaukset, setVastaukset] = useState([])
     const [kysely, setKysely] = useState(props.kysely)
     const [open, setOpen] = useState(false)
-
+    const [kyselyToWork, setKyselyToWork] = useState([])
 
     // post pyyntö 
    const vastaa = (kysely) => {
@@ -54,22 +55,23 @@ export default function Vastauslomake(props) {
         setOpen(false)
     }
 
-    // turha atm
-    const haeEsimerkkikysymys = () =>{
-        console.log(kysely)
-        alert('Ei vielä käytössä')        
-    }
-
+    
     // näytetään kyselyn kysymykset
     const vastaaKysymyksiin = () =>{
         console.log(kysely.kysymykset)
         setKysymykset(kysely.kysymykset)
         setOpen(true)
     }
+
+    // turha toistaseks
+    const naytaTilastot = () =>{
+        setKyselyToWork(kysely)
+        return ( <Vastauksetdialogi kysely={kyselyToWork}/> )
+    }
     
     return (
         <Box>
-            <Button endIcon={<FormatAlignJustifyIcon color="info" />}   onClick={()=>haeEsimerkkikysymys()} color="info">Näytä kysymykset</Button>
+            <Button endIcon={<FormatAlignJustifyIcon color="info" />}   component={ Link } to='/raportointi' color="info"> Näytä vastaukset</Button>
             <Button endIcon={<SendIcon />} color='success' onClick={()=>vastaaKysymyksiin()}>Vastaa</Button>
 
             <Dialog open={open} onClose={suljeKysely} maxWidth="lg" >
@@ -95,4 +97,4 @@ export default function Vastauslomake(props) {
             </Box >
             </FormControl>
             </Dialog>
-        </Box> )}
+        </Box> )}  
