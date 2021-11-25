@@ -8,7 +8,6 @@ import Teksti from '../Returns/Teksti';
 import Skaala from '../Returns/Skaala';
 import Check from '../Returns/Check';
 import RadioValinta from '../Returns/RadioValinta';
-import Vastauksetdialogi from '../Returns/Vastauksetdialogi';
 
 export default function Vastauslomake(props) {
 
@@ -16,7 +15,6 @@ export default function Vastauslomake(props) {
     const [vastaukset, setVastaukset] = useState([])
     const [kysely, setKysely] = useState(props.kysely)
     const [open, setOpen] = useState(false)
-    const [kyselyToWork, setKyselyToWork] = useState([])
 
     // post pyyntö 
    const vastaa = (kysely) => {
@@ -63,11 +61,6 @@ export default function Vastauslomake(props) {
         setOpen(true)
     }
 
-    // turha toistaseks
-    const naytaTilastot = () =>{
-        setKyselyToWork(kysely)
-        return ( <Vastauksetdialogi kysely={kyselyToWork}/> )
-    }
     
     return (
         <Box>

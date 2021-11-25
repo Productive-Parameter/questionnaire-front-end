@@ -1,10 +1,9 @@
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import { Button, Dialog, DialogTitle, Box, appBarClasses} from "@mui/material";
-
+import ListSubheader from '@mui/material/ListSubheader';
+import Divider from '@mui/material/Divider';
 
 export default function Vastaukset(){
     
@@ -34,23 +33,32 @@ export default function Vastaukset(){
         <div >
             {kyselyt.map((kysely, i) => {
                 return (
-                <div>
-                <h2 key={kysely.id}> {kysely.nimi} </h2>
-                    <ul>
+                <List
+                sx={{
+                    width: '100%',
+                    bgcolor: 'background.paper',
+                    position: 'relative',
+                    overflow: 'auto',
+                    
+                  }}
+                  subheader={<ListSubheader sx={{ fontSize: 20, fontWeight: 'bold' }}>{kysely.nimi}</ListSubheader>}
+                >
+                
+                    <ListSubheader>
                         {kysely.kysymykset.map((kysymys,i) => {
                             return(
-                                <div>
-                                    <li key={kysymys.id}>{kysymys.teksti}</li>
-                                    <ul> 
+                                <List>
+                                    <ListItem  key={kysymys.id}>{kysymys.teksti}</ListItem > <Divider/>
+                                    <ListSubheader> 
                                     {kysely.vastaukset.map((vastaus,i) => {
-                                    return( vastaus.kysymys.id === kysymys.id ? <li key={vastaus.id}> {vastaus.vastaus}</li>:null ) 
+                                    return( vastaus.kysymys.id === kysymys.id ? <ListItem  key={vastaus.id}><ListItemText primary={vastaus.vastaus}/></ListItem >:null ) 
                                     } )}
                                     
-                                    </ul>    
-                                </div>)
+                                    </ListSubheader>    
+                                </List>)
                         })} 
-                    </ul>
-                </div>)
+                    </ListSubheader>
+                </List>)
             })}
 
         </div>
