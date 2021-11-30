@@ -70,7 +70,7 @@ export default function Vastauslomake(props) {
             <Dialog open={open} onClose={suljeKysely} maxWidth="lg" >
                 <DialogTitle sx={{fontSize:'2rem', fontWeight: 'bold', color:'#0d0778'}}>{kysely.nimi}</DialogTitle>
                 <FormControl component="fieldset" sx={{marginLeft: 2, marginRight: 2}}>
-                {kysymykset.map((kysymys,i) => {
+                {kysymykset.map((kysymys, i) => {
                     switch (kysymys.tyyppi){
                         case 'teksti': 
                             return( <Teksti key={i} kysymys={kysymys} muutaVastaus={muutaVastaus}/> )
