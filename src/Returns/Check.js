@@ -8,16 +8,17 @@ import Checkbox from '@mui/material/Checkbox';
 
 export default function Check(props){
 
-    const {kysymys} = props;
-    const vaihtoehdot = kysymys.vaihtoehdot;
+    const { kysymys, muutaVastaus } = props;
 
     return(
         <Box sx={{marginBottom: 2}}>
         <FormLabel sx={{fontSize:'inherit',  color:'black'}}>{kysymys.teksti}</FormLabel>
         <FormGroup row>     
-            {vaihtoehdot.map((vaihtoehto, i) => {
-                return (<FormControlLabel key={vaihtoehto.id} onChange={e => props.muutaVastaus(e, kysymys.id)}  control={<Checkbox defaultChecked />} label={vaihtoehto.vaihtoehto} />)
-            })}                      
+            {kysymys.monivalintavaihtoehdot.map((vaihtoehto, i) => {
+                return (
+                    <FormControlLabel key={i} control={<Checkbox onChange={e => muutaVastaus(e, kysymys.id)} />} label={vaihtoehto.monivalintavaihtoehto} />
+                )
+            })}            
         </FormGroup>
         </Box>) 
 }

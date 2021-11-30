@@ -4,7 +4,7 @@ import Slider from '@mui/material/Slider';
 
 export default function Skaala(props){
     
-    const kysymys = props;
+    const {kysymys} = props;
 
     return(
         <Box sx={{marginBottom: 2}}>

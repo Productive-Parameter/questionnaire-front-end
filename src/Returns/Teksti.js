@@ -2,7 +2,7 @@ import {TextField, Box } from "@mui/material";
 
 export default function Teksti(props){
 
-    const kysymys = props;
+    const { kysymys } = props;
     
     return (
         <Box sx={{marginBottom: 2}}>
@@ -12,7 +12,6 @@ export default function Teksti(props){
                 label={kysymys.teksti}
                 margin= 'dense'
                 fullWidth
-                inputProps = {{style:{color:'black'}}}
                 onChange={e => props.muutaVastaus(e, kysymys.id)}
                 InputLabelProps={{
                     // shrink: true
