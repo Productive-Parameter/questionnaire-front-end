@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from "@mui/material";
 import Kyselyt from "./MUI/Kyselyt";
 import Vastaukset from './Returns/Vastaukset'
+import Tilastot from "./Returns/Tilastot";
 
 
 const theme = createTheme({
@@ -33,6 +34,7 @@ function App() {
           <Route exact path='/etusivu'></Route>
           <Route exact path='/kyselyt'><Kyselyt /></Route>
           <Route exact path='/raportointi'><Vastaukset/></Route>
+          <Route exact path='/tilastot'><Tilastot/></Route>
         </Switch>
       </ThemeProvider>
     </BrowserRouter>
