@@ -19,7 +19,7 @@ export default function Skaala(props){
         <Box sx={{marginBottom: 2}}>
             <Typography sx={{fontSize:'inherit',  color:'black'}}>{kysymys.teksti}</Typography>
             <Slider
-            sx={{ marginRight: 2, maxWidth: 600}}
+            sx={{ marginRight: 2, maxWidth: 600, marginLeft: 2}}
             onChange={e => props.muutaVastaus(e, kysymys.id)}
             size="small"
             step={1}
