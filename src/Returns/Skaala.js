@@ -6,6 +6,14 @@ export default function Skaala(props){
     
     const {kysymys} = props;
 
+    
+
+    const marks = []
+    {kysymys.monivalintavaihtoehdot.forEach((vaihtoehto, i) => {
+        marks.push({'value': i+1, label: 'vaihtoehto'})
+    })}
+    console.log(marks)
+    
     return(
         <Box sx={{marginBottom: 2}}>
             <Typography sx={{fontSize:'inherit',  color:'black'}}>{kysymys.teksti}</Typography>
@@ -15,6 +23,7 @@ export default function Skaala(props){
             size="small"
             step={1}
             min={1}
-            max={5}
+            marks={marks}                                                                          
+            max={kysymys.monivalintavaihtoehdot.length}            
     /></Box>) 
 }
