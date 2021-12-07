@@ -5,12 +5,13 @@ import Slider from '@mui/material/Slider';
 export default function Skaala(props){
     
     const {kysymys} = props;
+    console.log(kysymys)
 
     
 
     const marks = []
     {kysymys.monivalintavaihtoehdot.forEach((vaihtoehto, i) => {
-        marks.push({'value': i+1, label: 'vaihtoehto'})
+        marks.push({'value': i+1, label: vaihtoehto.monivalintavaihtoehto})
     })}
     console.log(marks)
     
