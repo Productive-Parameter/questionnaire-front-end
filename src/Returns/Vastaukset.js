@@ -4,9 +4,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
-import {TextField, Box } from "@mui/material";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-
+import Tilastot from '../Returns/Tilastot';
+import TekstiVastaukset from '../Returns/TekstiVastaukset';
 
 export default function Vastaukset(){
     
@@ -30,11 +29,24 @@ export default function Vastaukset(){
     
 
     
-    console.log(kyselyt)
 
     return (
         <div >
+            <Tilastot kyselyt={kyselyt}/>
             {kyselyt.map((kysely, i) => {
+                <Tilastot kysely={kysely}/>
+                console.log(kysely)
+                switch (kysely.tyyppi){
+                    case 'teksti': 
+                        return(<TekstiVastaukset key={i} kysely={kysely}/> )
+                    case 'skaala':
+                        return(<Tilastot key={i} kysely={kysely}/>)
+                    case 'radio':
+                        return(<Tilastot key={i} kysely={kysely}/>)
+                    case 'check':
+                        return(<Tilastot key={i} kysely={kysely}/>)    
+                    
+                }
                 return (
                 <List
                 sx={{
