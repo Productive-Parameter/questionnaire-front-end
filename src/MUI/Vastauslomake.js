@@ -18,8 +18,6 @@ export default function Vastauslomake(props) {
 
     // post pyyntö 
    const vastaa = (kysely) => {
-        console.log("POST")
-        console.log(kysely)
         
         const postOptions = {
             method: 'POST',
@@ -45,7 +43,6 @@ export default function Vastauslomake(props) {
 
     // vastauksen muutokset (joka näppäiniskulla)
     const muutaVastaus = (e, kysymysid) => {
-        console.log(vastaukset)
         setVastaukset({...vastaukset, [kysymysid]: e.target.value})
     }
 
@@ -56,7 +53,6 @@ export default function Vastauslomake(props) {
     
     // näytetään kyselyn kysymykset
     const vastaaKysymyksiin = () =>{
-        console.log(kysely.kysymykset)
         setKysymykset(kysely.kysymykset)
         setOpen(true)
     }

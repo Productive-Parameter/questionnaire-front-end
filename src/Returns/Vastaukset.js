@@ -4,6 +4,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
+import {TextField, Box } from "@mui/material";
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+
 
 export default function Vastaukset(){
     
@@ -54,8 +57,12 @@ export default function Vastaukset(){
                                     return( vastaus.kysymys.id === kysymys.id ? <ListItem  key={vastaus.id}><ListItemText primary={vastaus.vastaus}/></ListItem >:null ) 
                                     } )}
                                     
-                                    </ListSubheader>    
-                                </List>)
+                                    </ListSubheader>
+                                    
+                                
+                                </List>
+                                                 
+                                )
                         })} 
                     </ListSubheader>
                 </List>)
