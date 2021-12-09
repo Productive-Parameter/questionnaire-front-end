@@ -36,17 +36,17 @@ export default function Vastaukset(){
             {kyselyt.map((kysely, i) => {
                 <Tilastot kysely={kysely}/>
                 console.log(kysely)
-                switch (kysely.tyyppi){
-                    case 'teksti': 
-                        return(<TekstiVastaukset key={i} kysely={kysely}/> )
-                    case 'skaala':
-                        return(<Tilastot key={i} kysely={kysely}/>)
-                    case 'radio':
-                        return(<Tilastot key={i} kysely={kysely}/>)
-                    case 'check':
-                        return(<Tilastot key={i} kysely={kysely}/>)    
+                // switch (kysely.tyyppi){
+                //     case 'teksti': 
+                //         return( <TekstiVastaukset key={i} kysely={kysely}/> )
+                //     case 'skaala':
+                //         return(<Tilastot key={i} kysely={kysely}/>)
+                //     case 'radio':
+                //         return(<Tilastot key={i} kysely={kysely}/>)
+                //     case 'check':
+                //         return(<Tilastot key={i} kysely={kysely}/>)    
                     
-                }
+                // }
                 return (
                 <List
                 sx={{

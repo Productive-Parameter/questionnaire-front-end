@@ -8,7 +8,8 @@ import Tilastot from '../Returns/Tilastot';
 
 
 
-export default function TekstiVastaukset(kysely) {
+export default function TekstiVastaukset(props) {
+    const [kysely, setKysely] = React.useState(props)
     return (
         <List
         sx={{

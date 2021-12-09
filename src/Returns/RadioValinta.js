@@ -3,22 +3,24 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import FormControl from '@mui/material/FormControl';
 export default function RadioValinta(props) {
 
 
     const { kysymys }= props;
     return(
-        <Box sx={{marginBottom: 2}}>
+        <FormControl component="fieldset">
         <FormLabel sx={{fontSize:'inherit',  color:'black'}}>{kysymys.teksti} </FormLabel>
         
-        <RadioGroup row  >
+        <RadioGroup row  onChange={e => props.muutaVastaus(e, kysymys.id)}  >
         {kysymys.monivalintavaihtoehdot.map((vaihtoehto, i) => {
             return (
-            <FormControlLabel key = {i} onChange={e => props.muutaVastaus(e, kysymys.id)} value="2" control={<Radio />}required = {kysymys.pakollinen ===true} label={vaihtoehto.monivalintavaihtoehto} />
+            <FormControlLabel key = {i}  value={vaihtoehto.monivalintavaihtoehto} control={<Radio />} label={vaihtoehto.monivalintavaihtoehto} />
             )
             })}
            
         </RadioGroup>
-        </Box>
+        </FormControl>
+        
         ) 
 }
