@@ -5,7 +5,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
 import Tilastot from '../Returns/Tilastot';
-
+import { PieChart, BarChart, Pie, Bar, 
+    Cell, LabelList, XAxis, YAxis, CartesianGrid, Label } from 'recharts';
 
 
 export default function TekstiVastaukset(props) {
@@ -29,8 +30,10 @@ export default function TekstiVastaukset(props) {
                             <ListItem  key={kysymys.id}>{kysymys.teksti}</ListItem > <Divider/>
                             <ListSubheader> 
                             {kysely.vastaukset.map((vastaus,i) => {
-                            return( vastaus.kysymys.id === kysymys.id ? <ListItem  key={vastaus.id}><ListItemText primary={vastaus.vastaus}/></ListItem >:null ) 
+                            return( vastaus.kysymys.id === kysymys.id ? <ListItem  key={vastaus.id}><ListItemText primary={vastaus.vastaus}/></ListItem > :null  ) 
+                            
                             } )}
+                            <Divider/>
                             
                             </ListSubheader>
                             

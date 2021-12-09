@@ -43,6 +43,7 @@ export default function Vastauslomake(props) {
 
     // vastauksen muutokset (joka näppäiniskulla)
     const muutaVastaus = (e, kysymysid) => {
+        console.log(e)
         setVastaukset({...vastaukset, [kysymysid]: e.target.value})
     }
 
