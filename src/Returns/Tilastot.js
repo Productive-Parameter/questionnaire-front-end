@@ -1,8 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { PieChart, BarChart, Pie, Bar, 
     Cell, LabelList, XAxis, YAxis, CartesianGrid, Label} from 'recharts';
 
 export default function Tilastot() {
+    const [colors, setColors] = useState([]);
+    
+    /* hidastaa animaatioita, joten ehkä kymmenen värin tms. 
+    vakiopaletti olisi parempi ratkaisu? */
+    useEffect(() => {
+        let i = 0;
+        while (i < 10) {
+            const color = Math.floor(Math.random()*16777215).toString(16);
+            const colorString = `#${color}`;
+            i++;
+            setColors(colors => [...colors, colorString
+            ])
+        }
+    }, []);
 
     // testidata, jokainen solu tarvitsee nimen(tms. labelin) ja arvon
     const data = [
@@ -19,11 +33,6 @@ export default function Tilastot() {
         return `${entry.name}, ${entry.value} kpl, 
         ${(entry.percent * 100).toFixed(0)}%`;
     }
-
-    // säädä väripalautus
-    const randomColor = () => {
-        const color = Math.floor(Math.random()*16777215).toString(16);
-    }
     
 
     // mappaukset tarvitaan vain jos halutaan eri värit, ainakin barchartissa
@@ -34,7 +43,7 @@ export default function Tilastot() {
                 labelLine={false} dataKey="value">
                 {
                 data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index]}/>
+                <Cell key={`cell-${index}`} fill={colors[index]}/>
                     ))
                 }
                 </Pie>
@@ -49,7 +58,7 @@ export default function Tilastot() {
             <Bar dataKey="value" label>
             {
             data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index]} strokeWidth={index === 2 ? 4 : 1}/>
+            <Cell key={`cell-${index}`} fill={colors[index]} strokeWidth={index === 2 ? 4 : 1}/>
             ))
             }
             <LabelList dataKey="value" position="top" />
