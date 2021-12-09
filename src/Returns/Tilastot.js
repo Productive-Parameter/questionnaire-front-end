@@ -1,10 +1,10 @@
 import React from "react";
 import { PieChart, BarChart, Pie, Bar, 
-    Cell, LabelList, XAxis, YAxis, CartesianGrid} from 'recharts';
+    Cell, LabelList, XAxis, YAxis, CartesianGrid, Label} from 'recharts';
 
 export default function Tilastot() {
 
-    // testidata
+    // testidata, jokainen solu tarvitsee nimen(tms. labelin) ja arvon
     const data = [
             { name: 'Ei kiinnosta', value: 2 },
             { name: 'Ei kiinnosta paljoa', value: 3 },
@@ -25,9 +25,10 @@ export default function Tilastot() {
         const color = Math.floor(Math.random()*16777215).toString(16);
     }
     
+
     // mappaukset tarvitaan vain jos halutaan eri värit, ainakin barchartissa
     return(
-        <div>
+        <div style={{paddingLeft: 10}}>
             <PieChart width={600} height={300}>
                 <Pie data={data} cx="50%" cy="50%" outerRadius={80} label={customLabel}
                 labelLine={false} dataKey="value">
@@ -42,8 +43,9 @@ export default function Tilastot() {
             <BarChart width={600} height={300} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name"/>
-            <YAxis dataKey="value" 
-            label={{ value: 'vastausmäärä', angle: -90, position: 'insideLeft', textAnchor: 'middle' }} />
+            <YAxis dataKey="value">
+            <Label value="vastausmäärä (kpl)" position="insideLeft" angle={-90} style={{ textAnchor: 'middle' }} />
+            </YAxis>
             <Bar dataKey="value" label>
             {
             data.map((entry, index) => (
