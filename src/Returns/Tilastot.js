@@ -25,7 +25,7 @@ export default function Tilastot() {
         const color = Math.floor(Math.random()*16777215).toString(16);
     }
     
-
+    // mappaukset tarvitaan vain jos halutaan eri värit, ainakin barchartissa
     return(
         <div>
             <PieChart width={600} height={300}>
