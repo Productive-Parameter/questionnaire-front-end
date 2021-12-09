@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
-import { PieChart, BarChart, Pie, Bar, 
-    Cell, LabelList, XAxis, YAxis, CartesianGrid, Label} from 'recharts';
 import Palkkikaavio from "./Palkkikaavio";
+import Piirakkakaavio from "./Piirakkakaavio";
 
 export default function Tilastot() {
     const [colors, setColors] = useState([]);
     
     /* hidastaa animaatioita, joten ehkä kymmenen värin tms. 
-    vakiopaletti olisi parempi ratkaisu? */
+    vakiopaletti olisi parempi ratkaisu? Nämä joko raportointisivu ladattaessa
+    tai kaaviokomponenttien itsensä sisällä, jos tehdään randomilla. */
     useEffect(() => {
         let i = 0;
         while (i < 10) {
@@ -19,7 +19,8 @@ export default function Tilastot() {
         }
     }, []);
 
-    // testidata, jokainen solu tarvitsee nimen(tms. labelin) ja arvon
+    /* testidata, jokainen solu tarvitsee nimen(tms. labelin) ja arvon,
+    tätä vastaava data propsina kysymyksistä */
     const data = [
             { name: 'Ei kiinnosta', value: 2 },
             { name: 'Ei kiinnosta paljoa', value: 3 },
@@ -27,28 +28,16 @@ export default function Tilastot() {
             { name: 'Kiinnostaa paljon', value: 5 },
           ];
 
-    // customoi käytettyyn palettiin
+    /* customoidaan käytettyyn palettiin, jos käytetään vakituista.
+    Kymmenen riittää varmaankin vaihtoehdoiksi, 20 ainakin. Joko raportointi-
+    sivulla ja propsina kaaviokomponenteille, tai niiden itsensä sisällä */
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-    const customLabel = (entry) => {
-        return `${entry.name}, ${entry.value} kpl, 
-        ${(entry.percent * 100).toFixed(0)}%`;
-    }
     
 
-    // mappaukset tarvitaan vain jos halutaan eri värit, ainakin barchartissa
+    // mappaukset tarvitaan vain jos halutaan eri värit, datan mappaa automaattisesti
     return(
         <div style={{paddingLeft: 10}}>
-            <PieChart width={600} height={300}>
-                <Pie data={data} cx="50%" cy="50%" outerRadius={80} label={customLabel}
-                labelLine={false} dataKey="value">
-                {
-                data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index]}/>
-                    ))
-                }
-                </Pie>
-            </PieChart>
+            <Piirakkakaavio data={data} colors={colors} />
             <br/>
             <Palkkikaavio data={data} colors={colors} />
         </div>
